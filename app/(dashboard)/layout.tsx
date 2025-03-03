@@ -3,6 +3,7 @@ import { OrgSidebar } from "./_components/org-sidebar";
 import { Sidebar } from "./_components/sidebar";
 import { ConvexClientProvider } from "@/providers/convex-client-provider";
 import { Toaster } from "@/components/ui/sonner";
+import { ModalProvider } from "@/providers/modal-provider";
 
 
 
@@ -24,6 +25,7 @@ const DashboardLayout = ( {
                     <Navbar/>
 
                     <Toaster />
+                    <ModalProvider />
                     {children}
                 </div>
             </div>
