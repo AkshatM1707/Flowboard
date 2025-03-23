@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { EmptySearch } from "./empty-search";
 import { EmptyFavorites } from "./empty-favorites";
 import { EmptyBoards } from "./empty-boards";
@@ -16,21 +16,20 @@ interface BoardListProps {
 
 export const BoardList = ({ orgId }: BoardListProps) => {
   const searchParams = useSearchParams();
-  const search = useMemo(() => searchParams.get("search"), [searchParams]);
-  const favorites = useMemo(() => searchParams.get("favorites"), [searchParams]);
 
-  const data = useQuery(api.boards.get, { orgId });
+  // Use `useMemo()` to extract values safely
+  const search = useMemo(() => searchParams.get("search") || undefined, [searchParams]);
+  const favorites = useMemo(() => searchParams.get("favorites") || undefined, [searchParams]);
+
+  // Fetch data using query params
+  const data = useQuery(api.boards.get, { orgId, search, favorites });
 
   if (data === undefined) {
     return (
       <div>
-        <h2 className="text-3xl">
-          {favorites ? "Favorite Boards" : "Team Boards"}
-        </h2>
-
+        <h2 className="text-3xl">{favorites ? "Favorite Boards" : "Team Boards"}</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-5 mt-8 pb-10">
           <NewBoardButton orgId={orgId} disabled />
-          <BoardCard.Skeleton />
           <BoardCard.Skeleton />
           <BoardCard.Skeleton />
           <BoardCard.Skeleton />
@@ -40,27 +39,21 @@ export const BoardList = ({ orgId }: BoardListProps) => {
     );
   }
 
-  // If data is empty and search is active, show EmptySearch
-  if (!data.length && search) {
+  if (!data?.length && search) {
     return <EmptySearch />;
   }
 
-  // If data is empty and favorites is active, show EmptyFavorites
-  if (!data.length && favorites) {
+  if (!data?.length && favorites) {
     return <EmptyFavorites />;
   }
 
-  // If data is empty, show EmptyBoards
-  if (!data.length) {
+  if (!data?.length) {
     return <EmptyBoards />;
   }
 
   return (
     <div>
-      <h2 className="text-3xl">
-        {favorites ? "Favorite Boards" : "Team Boards"}
-      </h2>
-
+      <h2 className="text-3xl">{favorites ? "Favorite Boards" : "Team Boards"}</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-5 mt-8 pb-10">
         <NewBoardButton orgId={orgId} />
         {data.map((board) => (
@@ -73,7 +66,7 @@ export const BoardList = ({ orgId }: BoardListProps) => {
             authorName={board.authorName}
             createdAt={board._creationTime}
             orgId={board.orgId}
-            isFavorite={favorites ? true : false}
+            isFavorite={board.isFavorite}
           />
         ))}
       </div>
