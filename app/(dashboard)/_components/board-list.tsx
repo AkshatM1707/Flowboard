@@ -23,7 +23,7 @@ export const BoardList = ({ orgId }: BoardListProps) => {
 
   // Fetch data using query params
   const data = useQuery(api.boards.get, { orgId, search, favorites });
-
+  
   if (data === undefined) {
     return (
       <div>

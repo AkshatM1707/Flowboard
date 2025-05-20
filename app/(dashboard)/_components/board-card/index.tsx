@@ -32,7 +32,7 @@ export const BoardCard = ({
     isFavorite
 
 }:BoardCardProps) => {
-
+    console.log(id);
     const {userId }= useAuth() ;
     const authorLabel = userId ===authorId ? "You" : authorName ;
     const createdAtLabel =formatDistanceToNow(createdAt, {
@@ -63,7 +63,7 @@ export const BoardCard = ({
         }
     } ;
     return (
-        <Link href={'/board/${id}'}>
+        <Link href={`/board/${id}`}>
             <div className="group aspect-[100/127] border rounded-lg flex flex-col justify-between overflow-hidden">
                 <div className="relative flex-1 bg-amber-50"> 
                         <Image
