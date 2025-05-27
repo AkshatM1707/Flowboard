@@ -1,30 +1,27 @@
-"use cilent";
+// cursors-presence.tsx
+"use client";
+
 import { memo } from "react";
-import { useOthers, useOthersConnectionIds } from "@liveblocks/react/suspense";
+import { useOthersConnectionIds } from "@liveblocks/react/suspense";
 import { Cursor } from "./cursor";
 
-const Cursors =() => {
-    const ids = useOthersConnectionIds() ;
-    
-    return(
-        <>
-        {ids.map((connectionId)=>{
-            <Cursor 
-            key = {connectionId}
-            connectionId={connectionId} />
-        })}
-        </>
-    )
-}
+const Cursors = () => {
+    const ids = useOthersConnectionIds();
 
+    return (
+        <>
+            {ids.map((connectionId) => (
+                <Cursor 
+                    key={connectionId}
+                    connectionId={connectionId} 
+                />
+            ))}
+        </>
+    );
+};
 
 export const CursorsPresence = memo(() => {
-    const others = useOthers() ;
-    return (
-        <div>
-            <Cursors />
-        </div>
-    );
+    return <Cursors />;
 });
 
-CursorsPresence.displayName="CursorsPresence";
+CursorsPresence.displayName = "CursorsPresence";
