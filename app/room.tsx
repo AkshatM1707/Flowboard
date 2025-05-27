@@ -24,7 +24,9 @@ export const Room = ({ children , roomId , fallback }: RoomProps) => {
 
   return (
 
-    <LiveblocksProvider authEndpoint="/api/liveblocks-auth">
+    <LiveblocksProvider
+    throttle={16} 
+    authEndpoint="/api/liveblocks-auth">
 
       <RoomProvider id={roomId} initialPresence ={{
         cursor: null , 
