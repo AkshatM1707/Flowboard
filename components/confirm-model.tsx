@@ -1,14 +1,15 @@
 "use client";
 
-import { AlertDialog,
+import {
+    AlertDialog,
     AlertDialogTitle,
-    AlertDialogTrigger, 
+    AlertDialogTrigger,
     AlertDialogAction,
     AlertDialogCancel,
     AlertDialogContent,
     AlertDialogDescription,
     AlertDialogFooter,
-    AlertDialogHeader
+    AlertDialogHeader,
 } from "@/components/ui/alert-dialog";
 
 interface ConfirmModalProps {
@@ -32,18 +33,20 @@ export const ConfirmModal = ({
 
     return (
         <AlertDialog>
-            
-            <AlertDialogTrigger>
-                <div>{children}</div>
-            </AlertDialogTrigger>
+            <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
             <AlertDialogContent>
                 <AlertDialogHeader>
                     <AlertDialogTitle>{header}</AlertDialogTitle>
-                    <AlertDialogDescription>{description}</AlertDialogDescription>
+                    <AlertDialogDescription>
+                        {description}
+                    </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                     <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction disabled={disabled} onClick={handleConfirm}>
+                    <AlertDialogAction
+                        disabled={disabled}
+                        onClick={handleConfirm}
+                    >
                         Confirm
                     </AlertDialogAction>
                 </AlertDialogFooter>
