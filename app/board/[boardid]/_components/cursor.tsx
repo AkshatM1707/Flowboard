@@ -7,37 +7,35 @@ import { useOther } from "@liveblocks/react";
 import { useOthersConnectionIds } from "@liveblocks/react/suspense";
 
 interface CursorProps {
-  connectionId: number;
+    connectionId: number;
 }
 
 export const Cursor = memo(({ connectionId }: CursorProps) => {
-  const info = useOther(connectionId, (user) => user?.info);
-  const cursor = useOther(connectionId, (user) => user?.presence.cursor);
-  console.log(info,cursor) ;
-  const name = info?.name || "Teammate";
-  const color = connectionIdToColor(connectionId);
+    const info = useOther(connectionId, (user) => user?.info);
+    const cursor = useOther(connectionId, (user) => user?.presence.cursor);
+    // console.log(info,cursor) ;
+    const name = info?.name || "Teammate";
+    const color = connectionIdToColor(connectionId);
 
-  if (!cursor) {
-    return null;
-  }
-  const {x,y} = cursor ;
- return ( 
-    <foreignObject
-    style={{
-        transform: ``
-    }}
-    >
-        <MousePointer2 
-        className="h-5 w-5"
-        style={{
-            fill:connectionIdToColor(connectionId),
-            color:connectionIdToColor(connectionId),
-
-        }}     
-        />
-    </foreignObject>
- )
+    if (!cursor) {
+        return null;
+    }
+    const { x, y } = cursor;
+    return (
+        <foreignObject
+            style={{
+                transform: ``,
+            }}
+        >
+            <MousePointer2
+                className="h-5 w-5"
+                style={{
+                    fill: connectionIdToColor(connectionId),
+                    color: connectionIdToColor(connectionId),
+                }}
+            />
+        </foreignObject>
+    );
 });
 
-
-Cursor.displayName="Cursor";
+Cursor.displayName = "Cursor";
