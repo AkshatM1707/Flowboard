@@ -15,11 +15,16 @@ interface ToolButtonProps {
 
 export const ToolButton = ({
     label , icon : Icon , onClick , isActive , isDisabled ,}:ToolButtonProps) => {
+        const handleClick = (e: React.MouseEvent) => {
+            console.log('ToolButton clicked:', label);
+            onClick();
+        };
         return (
+            
             <Hint label ={label } side ="right" sideOffset={14}>
                 <Button
                 disabled ={isDisabled}
-                onClick = {onClick}
+                onClick = {handleClick}
                 size = "icon"
                 variant={isActive ? "boardActive" :"board"}
                 >
