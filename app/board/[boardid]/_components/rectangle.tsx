@@ -10,21 +10,20 @@ interface RectangleProps {
 
 export const Rectangle = ({ id, layer, onPointerDown, selectionColor }) => {
     const { x, y, width, height, fill } = layer;
-
+    const isSelected = selectionColor && selectionColor !== "transparent";
+    
     return (
         <rect
-            className="drop-shadow-md pointer-events-auto"
             onPointerDown={(e) => onPointerDown(e, id)}
-            style={{
-                transform: `translate(${x}px, ${y}px)`,
-            }}
-            x={0}
-            y={0}
+            x={x}
+            y={y}
             width={width}
             height={height}
-            fill={fill ? colorToCss(fill) : "#000"}
+            fill={fill ? colorToCss(fill) : "#CCC"}
             stroke={selectionColor || "transparent"}
-            strokeWidth="1"
+            strokeWidth={isSelected ? "3" : "0"}
+            strokeDasharray={isSelected ? "5,5" : "none"}
+            filter={isSelected ? "drop-shadow(0 0 8px rgba(14, 165, 233, 0.3))" : "none"}
         />
     );
 };
