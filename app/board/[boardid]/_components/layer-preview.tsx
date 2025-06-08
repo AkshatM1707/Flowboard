@@ -6,6 +6,7 @@ import { useStorage } from "@liveblocks/react";
 import { root } from "postcss";
 import {memo} from "react";
 import { Rectangle } from "./rectangle";
+import { Text } from "./text";
 
 interface LayerPreviewProps {
     id : string ;
@@ -24,6 +25,15 @@ export const LayerPreview =memo(({
     }
     
     switch(layer.type){
+        case LayerType.Text:
+            return(
+                <Text
+                id = {id}
+                layer = {layer}
+                onPointerDown = {onLayerPointerDown}
+                selectionColor = {selectionColor}
+                />
+            ) ;
         case LayerType.Rectangle:
             return(
                 <Rectangle 
