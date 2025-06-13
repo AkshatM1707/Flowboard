@@ -6,22 +6,19 @@ import { useOthersConnectionIds } from "@liveblocks/react/suspense";
 import { Cursor } from "./cursor";
 
 const Cursors = () => {
-    const ids = useOthersConnectionIds();
+  const ids = useOthersConnectionIds();
 
-    return (
-        <>
-            {ids.map((connectionId) => (
-                <Cursor 
-                    key={connectionId}
-                    connectionId={connectionId} 
-                />
-            ))}
-        </>
-    );
+  return (
+    <>
+      {ids.map((connectionId) => (
+        <Cursor key={connectionId} connectionId={connectionId} />
+      ))}
+    </>
+  );
 };
 
 export const CursorsPresence = memo(() => {
-    return <Cursors />;
+  return <Cursors />;
 });
 
 CursorsPresence.displayName = "CursorsPresence";

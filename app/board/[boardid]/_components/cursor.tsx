@@ -7,7 +7,7 @@ import { connectionIdToColor } from "@/lib/utils";
 import { useOther } from "@liveblocks/react";
 
 interface CursorProps {
-    connectionId: number;
+  connectionId: number;
 }
 
 export const Cursor = memo(({ connectionId }: CursorProps) => {
@@ -28,15 +28,15 @@ export const Cursor = memo(({ connectionId }: CursorProps) => {
       width={name.length * 10 + 24}
       height={50}
       className="overflow-visible"
-      style={{ pointerEvents: 'none' }}
+      style={{ pointerEvents: "none" }}
     >
       <div className="relative flex items-center">
         <MousePointer2
           className="h-5 w-5"
-          style={{ 
-            fill: color, 
+          style={{
+            fill: color,
             color: color,
-            transform: 'rotate(-12deg)'
+            transform: "rotate(-12deg)",
           }}
         />
         <div

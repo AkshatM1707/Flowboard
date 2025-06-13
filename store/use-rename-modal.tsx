@@ -12,13 +12,13 @@ interface IRenameModal {
 export const useRenameModal = create<IRenameModal>((set) => ({
   isOpen: false,
   initialValues: defaultValues,
-  
+
   onOpen: (id, title) =>
     set((state) => ({
       isOpen: true,
       initialValues: { id, title },
     })),
-  
+
   onClose: () =>
     set({
       isOpen: false,

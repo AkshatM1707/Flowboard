@@ -8,8 +8,14 @@ interface EllipseProps {
   selectionColor?: string;
 }
 
-export const Ellipse = ({ id, layer, onPointerDown, selectionColor }) => {
+export const Ellipse = ({
+  id,
+  layer,
+  onPointerDown,
+  selectionColor,
+}: EllipseProps) => {
   const { x, y, width, height, fill } = layer;
+  const isSelected = selectionColor && selectionColor !== "transparent";
 
   return (
     <ellipse
@@ -20,7 +26,11 @@ export const Ellipse = ({ id, layer, onPointerDown, selectionColor }) => {
       ry={height / 2}
       fill={fill ? colorToCss(fill) : "#CCC"}
       stroke={selectionColor || "transparent"}
-      strokeWidth={selectionColor ? "2" : "0"}
+      strokeWidth={isSelected ? "3" : "0"}
+      strokeDasharray={isSelected ? "5,5" : "none"}
+      filter={
+        isSelected ? "drop-shadow(0 0 8px rgba(14, 165, 233, 0.3))" : "none"
+      }
     />
   );
 };

@@ -5,36 +5,30 @@ import { ConvexClientProvider } from "@/providers/convex-client-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { ModalProvider } from "@/providers/modal-provider";
 
-
-
 interface DashboardLayoutProps {
-    children : React.ReactNode ;
-} ;
+  children: React.ReactNode;
+}
 
-const DashboardLayout = ( {
-    children ,
-} :DashboardLayoutProps) => {
-    return (
-      <ConvexClientProvider>
-         <main className ="h-full ">
-        <Sidebar/>
-        <div className ="pl-[60px] h-full" >
-            <div className = "flex gap-x-3 h-full">
-                <OrgSidebar />
-                <div className="h-full flex-1">
-                    <Navbar/>
+const DashboardLayout = ({ children }: DashboardLayoutProps) => {
+  return (
+    <ConvexClientProvider>
+      <main className="h-full ">
+        <Sidebar />
+        <div className="pl-[60px] h-full">
+          <div className="flex gap-x-3 h-full">
+            <OrgSidebar />
+            <div className="h-full flex-1">
+              <Navbar />
 
-                    <Toaster />
-                    <ModalProvider />
-                    {children}
-                </div>
+              <Toaster />
+              <ModalProvider />
+              {children}
             </div>
-       </div>
-
-       </main>
-      </ConvexClientProvider>
-
-    ) ;
+          </div>
+        </div>
+      </main>
+    </ConvexClientProvider>
+  );
 };
 
-export default DashboardLayout ;
+export default DashboardLayout;

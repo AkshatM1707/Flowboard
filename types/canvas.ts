@@ -76,28 +76,19 @@ export type Point = {
   x: number;
   y: number;
 };
+
 export type XYWH = {
   x: number;
   y: number;
   width: number;
   height: number;
 };
+
 export enum Side {
   Top = 1,
   Bottom = 2,
   Left = 4,
   Right = 8,
-}
-
-export enum CanvasMode {
-  None,
-  Pressing,
-  SelectionNet,
-  Translating,
-  Inserting,
-  Resizing,
-  Pencil,
-  Eraser,
 }
 
 export type CanvasState =
@@ -136,6 +127,17 @@ export type CanvasState =
   | {
       mode: CanvasMode.Eraser;
     };
+
+export enum CanvasMode {
+  None,
+  Pressing,
+  SelectionNet,
+  Translating,
+  Inserting,
+  Resizing,
+  Pencil,
+  Eraser,
+}
 
 export type Layer =
   | RectangleLayer

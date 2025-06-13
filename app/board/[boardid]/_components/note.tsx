@@ -9,7 +9,12 @@ interface NoteProps {
   selectionColor?: string;
 }
 
-export const Note = ({ id, layer, onPointerDown, selectionColor }: NoteProps) => {
+export const Note = ({
+  id,
+  layer,
+  onPointerDown,
+  selectionColor,
+}: NoteProps) => {
   const { x, y, width, height, fill, textColor, fontSize, value } = layer;
 
   const updateValue = useMutation(({ storage }, newValue: string) => {
@@ -29,7 +34,9 @@ export const Note = ({ id, layer, onPointerDown, selectionColor }: NoteProps) =>
         className="h-full w-full p-3 text-sm rounded-lg shadow-lg"
         style={{
           backgroundColor: fill ? colorToCss(fill) : "#fef68a",
-          border: selectionColor ? `2px solid ${selectionColor}` : "1px solid #d1d5db",
+          border: selectionColor
+            ? `2px solid ${selectionColor}`
+            : "1px solid #d1d5db",
         }}
       >
         <div
