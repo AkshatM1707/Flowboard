@@ -2,9 +2,9 @@
 
 import { memo } from "react";
 import { useSelf } from "@liveblocks/react/suspense";
-import { Camera, Color, LayerType } from "@/types/canvas";
+import { Camera, Color } from "@/types/canvas";
 import { useSelectionBounds } from "@/hooks/use-selection-bounds";
-import { useMutation, useStorage } from "@liveblocks/react/suspense";
+import { useMutation } from "@liveblocks/react/suspense";
 import { Trash2, BringToFront, SendToBack } from "lucide-react";
 import { Hint } from "@/components/hint";
 import { Button } from "@/components/ui/button";
@@ -38,7 +38,7 @@ export const SelectionTools = memo(
           liveLayerIds.move(indices[i], i);
         }
       },
-      [selection]
+      [selection],
     );
 
     const handleMoveToFront = useMutation(
@@ -56,11 +56,11 @@ export const SelectionTools = memo(
         for (let i = indices.length - 1; i >= 0; i--) {
           liveLayerIds.move(
             indices[i],
-            arr.length - 1 - (indices.length - 1 - i)
+            arr.length - 1 - (indices.length - 1 - i),
           );
         }
       },
-      [selection]
+      [selection],
     );
 
     const setFillColor = useMutation(
@@ -71,7 +71,7 @@ export const SelectionTools = memo(
           liveLayers.get(id)?.set("fill", fill);
         });
       },
-      [selection, setLastUsedColor]
+      [selection, setLastUsedColor],
     );
 
     if (!selectionBounds) return null;
@@ -110,7 +110,7 @@ export const SelectionTools = memo(
         </div>
       </div>
     );
-  }
+  },
 );
 
 SelectionTools.displayName = "SelectionTools";

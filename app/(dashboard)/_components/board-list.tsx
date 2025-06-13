@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import { EmptySearch } from "./empty-search";
 import { EmptyFavorites } from "./empty-favorites";
 import { EmptyBoards } from "./empty-boards";
@@ -18,16 +18,24 @@ export const BoardList = ({ orgId }: BoardListProps) => {
   const searchParams = useSearchParams();
 
   // Use `useMemo()` to extract values safely
-  const search = useMemo(() => searchParams.get("search") || undefined, [searchParams]);
-  const favorites = useMemo(() => searchParams.get("favorites") || undefined, [searchParams]);
+  const search = useMemo(
+    () => searchParams.get("search") || undefined,
+    [searchParams],
+  );
+  const favorites = useMemo(
+    () => searchParams.get("favorites") || undefined,
+    [searchParams],
+  );
 
   // Fetch data using query params
   const data = useQuery(api.boards.get, { orgId, search, favorites });
-  
+
   if (data === undefined) {
     return (
       <div>
-        <h2 className="text-3xl">{favorites ? "Favorite Boards" : "Team Boards"}</h2>
+        <h2 className="text-3xl">
+          {favorites ? "Favorite Boards" : "Team Boards"}
+        </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-5 mt-8 pb-10">
           <NewBoardButton orgId={orgId} disabled />
           <BoardCard.Skeleton />
@@ -53,7 +61,9 @@ export const BoardList = ({ orgId }: BoardListProps) => {
 
   return (
     <div>
-      <h2 className="text-3xl">{favorites ? "Favorite Boards" : "Team Boards"}</h2>
+      <h2 className="text-3xl">
+        {favorites ? "Favorite Boards" : "Team Boards"}
+      </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-5 mt-8 pb-10">
         <NewBoardButton orgId={orgId} />
         {data.map((board) => (

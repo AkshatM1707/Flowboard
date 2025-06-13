@@ -37,8 +37,8 @@ export const Text = ({
           color: textColor
             ? colorToCss(textColor)
             : fill
-            ? colorToCss(fill)
-            : "#000",
+              ? colorToCss(fill)
+              : "#000",
           border: selectionColor ? `2px solid ${selectionColor}` : "none",
           backgroundColor: "transparent",
           fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",

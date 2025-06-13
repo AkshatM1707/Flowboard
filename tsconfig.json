@@ -4,7 +4,7 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
-    "types": ["@clerk/nextjs"] ,
+    "types": ["@clerk/nextjs"],
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,

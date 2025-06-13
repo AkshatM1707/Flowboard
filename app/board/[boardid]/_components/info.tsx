@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Hint } from "@/components/hint";
 import { useRenameModal } from "@/store/use-rename-modal";
-import { RenameModal } from "@/components/modals/rename-modal"; // ✅ Import the modal here
+
 import { Actions } from "@/components/actions";
 import { Menu } from "lucide-react";
 
@@ -24,7 +24,6 @@ const font = Poppins({
   subsets: ["latin"],
   weight: ["600"],
 });
-
 
 export const Info = ({ boardId }: InfoProps) => {
   const { onOpen } = useRenameModal();
@@ -44,7 +43,7 @@ export const Info = ({ boardId }: InfoProps) => {
             <span
               className={cn(
                 "font-semibold text-xl ml-2 text-black",
-                font.className
+                font.className,
               )}
             >
               Board

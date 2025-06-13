@@ -23,30 +23,56 @@ export const LayerPreview = memo(
       return null;
     }
 
-    const commonProps = {
-      id,
-      layer,
-      onPointerDown: onLayerPointerDown,
-      selectionColor,
-    };
-
     switch (layer.type) {
       case LayerType.Path:
-        return <Path {...commonProps} />;
+        return (
+          <Path
+            id={id}
+            layer={layer}
+            onPointerDown={onLayerPointerDown}
+            selectionColor={selectionColor}
+          />
+        );
       case LayerType.Rectangle:
-        return <Rectangle {...commonProps} />;
+        return (
+          <Rectangle
+            id={id}
+            layer={layer}
+            onPointerDown={onLayerPointerDown}
+            selectionColor={selectionColor}
+          />
+        );
       case LayerType.Ellipse:
-        return <Ellipse {...commonProps} />;
+        return (
+          <Ellipse
+            id={id}
+            layer={layer}
+            onPointerDown={onLayerPointerDown}
+            selectionColor={selectionColor}
+          />
+        );
       case LayerType.Text:
-        return <Text {...commonProps} />;
+        return (
+          <Text
+            id={id}
+            layer={layer}
+            onPointerDown={onLayerPointerDown}
+            selectionColor={selectionColor}
+          />
+        );
       case LayerType.Note:
-        return <Note {...commonProps} />;
+        return (
+          <Note
+            id={id}
+            layer={layer}
+            onPointerDown={onLayerPointerDown}
+            selectionColor={selectionColor}
+          />
+        );
       default:
-        console.warn("Unknown layer type", layer.type);
-
         return null;
     }
-  }
+  },
 );
 
 LayerPreview.displayName = "LayerPreview";

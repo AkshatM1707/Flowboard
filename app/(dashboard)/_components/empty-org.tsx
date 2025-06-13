@@ -8,12 +8,7 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 export const EmptyOrg = () => {
   return (
     <div className="h-full p-20 mt-100 flex flex-col items-center justify-center">
-      <Image
-        src="/elements.svg"
-        alt="Empty"
-        height={200}
-        width={200}
-      />
+      <Image src="/elements.svg" alt="Empty" height={200} width={200} />
       <h2 className="text-2xl font-semibold mt-6">Welcome to Flowboard</h2>
       <p className="text-muted-foreground text-sm mt-2">
         Create an organization to get started
