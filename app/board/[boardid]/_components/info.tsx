@@ -14,7 +14,7 @@ import { useRenameModal } from "@/store/use-rename-modal";
 import { Actions } from "@/components/actions";
 import { Menu } from "lucide-react";
 
-const TabSeparator = () => <div className="text-neutral-300 px-1.5" />;
+const TabSeparator = () => <div className="px-1.5 text-neutral-300" />;
 
 interface InfoProps {
   boardId: string;
@@ -35,15 +35,15 @@ export const Info = ({ boardId }: InfoProps) => {
   if (!data) return <InfoSkeleton />;
 
   return (
-    <div className="absolute top-2 left-2 bg-white rounded-md px-1.5 h-12 flex items-center shadow-md">
+    <div className="absolute left-2 top-2 flex h-12 items-center rounded-md bg-white px-1.5 shadow-md">
       <Hint label="Go to boards" side="bottom" sideOffset={10}>
         <Button asChild variant="board" className="px-2">
           <Link href="/">
             <Image src="/logo.svg" alt="Board Logo" height={40} width={40} />
             <span
               className={cn(
-                "font-semibold text-xl ml-2 text-black",
-                font.className,
+                "ml-2 text-xl font-semibold text-black",
+                font.className
               )}
             >
               Board
@@ -55,7 +55,7 @@ export const Info = ({ boardId }: InfoProps) => {
       <Hint label="Edit title" side="bottom" sideOffset={10}>
         <Button
           variant="board"
-          className="text-base font-normal px-2"
+          className="px-2 text-base font-normal"
           onClick={() => onOpen(data._id, data.title)}
         >
           {data.title}
@@ -76,6 +76,6 @@ export const Info = ({ boardId }: InfoProps) => {
 };
 export const InfoSkeleton = () => {
   return (
-    <div className="absolute top-2 left-2 bg-white rounded-md px-1.5 h-12 flex items-center shadow-md w-[300px]" />
+    <div className="absolute left-2 top-2 flex h-12 w-[300px] items-center rounded-md bg-white px-1.5 shadow-md" />
   );
 };

@@ -2,10 +2,10 @@ import Image from "next/image";
 
 export const EmptySearch = () => {
   return (
-    <div className="h-full flex flex-col items-center justify-center">
+    <div className="flex h-full flex-col items-center justify-center">
       <Image src="/empty-search.svg" height={140} width={140} alt="Empty" />
-      <h2 className="text-2xl font-semibold mt-6">No results Found !</h2>
-      <p className="text-muted-foreground textg-sm mt-2">
+      <h2 className="mt-6 text-2xl font-semibold">No results Found !</h2>
+      <p className="textg-sm mt-2 text-muted-foreground">
         Try Searching for something else .
       </p>
     </div>

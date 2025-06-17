@@ -38,7 +38,7 @@ export const SelectionTools = memo(
           liveLayerIds.move(indices[i], i);
         }
       },
-      [selection],
+      [selection]
     );
 
     const handleMoveToFront = useMutation(
@@ -56,11 +56,11 @@ export const SelectionTools = memo(
         for (let i = indices.length - 1; i >= 0; i--) {
           liveLayerIds.move(
             indices[i],
-            arr.length - 1 - (indices.length - 1 - i),
+            arr.length - 1 - (indices.length - 1 - i)
           );
         }
       },
-      [selection],
+      [selection]
     );
 
     const setFillColor = useMutation(
@@ -71,7 +71,7 @@ export const SelectionTools = memo(
           liveLayers.get(id)?.set("fill", fill);
         });
       },
-      [selection, setLastUsedColor],
+      [selection, setLastUsedColor]
     );
 
     if (!selectionBounds) return null;
@@ -81,12 +81,12 @@ export const SelectionTools = memo(
 
     return (
       <div
-        className="absolute p-3 rounded-xl bg-white shadow-sm border flex select-none"
+        className="absolute flex select-none rounded-xl border bg-white p-3 shadow-sm"
         style={{
           transform: `translate(calc(${x}px - 50%), calc(${y}px - 100%))`,
         }}
       >
-        <div className="flex flex-wrap gap-2 items-center max-w-[164px] pr-2 mr-2 border-r border-neutral-200">
+        <div className="mr-2 flex max-w-[164px] flex-wrap items-center gap-2 border-r border-neutral-200 pr-2">
           <ColorPicker onChange={setFillColor} />
         </div>
         <div className="flex flex-col gap-y-0.5">
@@ -101,7 +101,7 @@ export const SelectionTools = memo(
             </Button>
           </Hint>
         </div>
-        <div className="flex items-center pl-2 ml-2 border-l">
+        <div className="ml-2 flex items-center border-l pl-2">
           <Hint label="Delete">
             <Button variant="board" size="icon" onClick={deleteLayers}>
               <Trash2 />
@@ -110,7 +110,7 @@ export const SelectionTools = memo(
         </div>
       </div>
     );
-  },
+  }
 );
 
 SelectionTools.displayName = "SelectionTools";
