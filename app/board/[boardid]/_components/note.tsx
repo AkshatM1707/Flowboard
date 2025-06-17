@@ -31,7 +31,7 @@ export const Note = ({
       onPointerDown={(e) => onPointerDown(e, id)}
     >
       <div
-        className="h-full w-full p-3 text-sm rounded-lg shadow-lg"
+        className="h-full w-full rounded-lg p-3 text-sm shadow-lg"
         style={{
           backgroundColor: fill ? colorToCss(fill) : "#fef68a",
           border: selectionColor
@@ -40,7 +40,7 @@ export const Note = ({
         }}
       >
         <div
-          className="h-full w-full outline-none resize-none bg-transparent"
+          className="h-full w-full resize-none bg-transparent outline-none"
           style={{
             color: textColor ? colorToCss(textColor) : "#000",
             fontSize: fontSize || 14,

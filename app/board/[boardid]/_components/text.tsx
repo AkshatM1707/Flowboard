@@ -31,7 +31,7 @@ export const Text = ({
       onPointerDown={(e) => onPointerDown(e, id)}
     >
       <div
-        className="h-full w-full flex items-center justify-center text-center outline-none font-medium"
+        className="flex h-full w-full items-center justify-center text-center font-medium outline-none"
         style={{
           fontSize: fontSize || Math.min(width, height) * 0.15,
           color: textColor

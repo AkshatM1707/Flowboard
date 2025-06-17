@@ -27,7 +27,7 @@ export const Navbar = () => {
       </div>
 
       {/* Organization Switcher for small screens */}
-      <div className="block lg:hidden flex-1">
+      <div className="block flex-1 lg:hidden">
         <OrganizationSwitcher
           hidePersonal
           appearance={{

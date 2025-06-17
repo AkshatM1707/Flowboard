@@ -14,7 +14,7 @@ export function connectionIdToColor(connectionId: number): string {
 
 export function pointerEventToCanvasPoint(
   e: React.PointerEvent,
-  camera: Camera,
+  camera: Camera
 ) {
   return {
     x: Math.round(e.clientX) - camera.x,
@@ -61,7 +61,7 @@ export function findIntersectingLayersWithRectangle(
   layerIds: readonly string[],
   layers: ReadonlyMap<string, Layer>,
   origin: Point,
-  current: Point,
+  current: Point
 ) {
   const rect = {
     x: Math.min(origin.x, current.x),

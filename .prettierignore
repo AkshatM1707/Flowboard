@@ -1,0 +1,10 @@
+.next
+node_modules
+.git
+.env*
+*.log
+.vercel
+.convex/_generated
+dist
+build
+coverage

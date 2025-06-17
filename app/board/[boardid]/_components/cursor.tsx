@@ -40,7 +40,7 @@ export const Cursor = memo(({ connectionId }: CursorProps) => {
           }}
         />
         <div
-          className="absolute left-5 top-5 px-1.5 py-0.5 rounded text-xs text-white font-semibold whitespace-nowrap"
+          className="absolute left-5 top-5 whitespace-nowrap rounded px-1.5 py-0.5 text-xs font-semibold text-white"
           style={{ backgroundColor: color }}
         >
           {name}

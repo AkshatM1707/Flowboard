@@ -128,7 +128,7 @@ export const updateLayer = mutation({
         r: v.number(),
         g: v.number(),
         b: v.number(),
-      }),
+      })
     ),
   },
   handler: async (ctx, args) => {
@@ -162,7 +162,7 @@ export const remove = mutation({
     const existingFavorite = await ctx.db
       .query("userFavorites")
       .withIndex("by_user_board", (q) =>
-        q.eq("userId", userId).eq("boardId", args.id),
+        q.eq("userId", userId).eq("boardId", args.id)
       )
       .unique();
 
@@ -191,7 +191,7 @@ export const favorite = mutation({
     const existingFavorite = await ctx.db
       .query("userFavorites")
       .withIndex("by_user_board", (q) =>
-        q.eq("userId", userId).eq("boardId", board._id),
+        q.eq("userId", userId).eq("boardId", board._id)
       )
       .unique();
     if (existingFavorite) {
@@ -224,7 +224,7 @@ export const unfavorite = mutation({
     const existingFavorite = await ctx.db
       .query("userFavorites")
       .withIndex("by_user_board", (q) =>
-        q.eq("userId", userId).eq("boardId", board._id),
+        q.eq("userId", userId).eq("boardId", board._id)
       )
       .unique();
     if (!existingFavorite) {

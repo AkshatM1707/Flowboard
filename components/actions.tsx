@@ -56,15 +56,15 @@ export const Actions = ({
         sideOffset={sideOffset}
         className="w-60"
       >
-        <DropdownMenuItem onClick={onCopyLink} className="p-3 cursor-pointer">
-          <Link2 className="h-4 w-4 mr-2" />
+        <DropdownMenuItem onClick={onCopyLink} className="cursor-pointer p-3">
+          <Link2 className="mr-2 h-4 w-4" />
           Copy Board Link
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => onOpen(id, title)}
-          className="p-3 cursor-pointer"
+          className="cursor-pointer p-3"
         >
-          <Pencil className="h-4 w-4 mr-2" />
+          <Pencil className="mr-2 h-4 w-4" />
           Rename
         </DropdownMenuItem>
         <ConfirmModal
@@ -75,9 +75,9 @@ export const Actions = ({
         >
           <Button
             variant="ghost"
-            className="p-3 cursor-pointer text-sm w-full justify-start font-normal"
+            className="w-full cursor-pointer justify-start p-3 text-sm font-normal"
           >
-            <Trash2 className="h-4 w-4 mr-2" />
+            <Trash2 className="mr-2 h-4 w-4" />
             Delete Board
           </Button>
         </ConfirmModal>
