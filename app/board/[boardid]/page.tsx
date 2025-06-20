@@ -1,12 +1,12 @@
 "use client";
 
+import { use } from "react";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import { Canvas } from "./_components/canvas";
 import { Room } from "@/app/room";
 import { Loading } from "./_components/loading";
-import { use } from "react";
 
 interface BoardIdPageProps {
   params: Promise<{
@@ -17,22 +17,24 @@ interface BoardIdPageProps {
 const BoardIdPage = ({ params }: BoardIdPageProps) => {
   const resolvedParams = use(params);
 
-  const data = useQuery(api.board.get, {
-    id: resolvedParams.boardid as Id<"boards">,
-  });
+  // More robust boardId validation
+  const rawBoardId = resolvedParams?.boardid;
+  const boardId = rawBoardId && rawBoardId !== "undefined" && rawBoardId.trim() !== "" 
+    ? rawBoardId as Id<"boards"> 
+    : undefined;
 
-  console.log("Resolved Params:", resolvedParams);
-  console.log("Board ID:", resolvedParams.boardid);
+  const data = useQuery(
+    api.board.get,
+    boardId ? { id: boardId } : "skip"
+  );
 
-  if (!resolvedParams.boardid) {
-    return <div>No board ID found</div>;
+  if (!boardId || data === undefined) {
+    return <Loading />;
   }
 
-  if (!data) return <Loading />;
-
   return (
-    <Room roomId={resolvedParams.boardid} fallback={<Loading />}>
-      <Canvas boardId={resolvedParams.boardid} />
+    <Room roomId={boardId} fallback={<Loading />}>
+      <Canvas boardId={boardId} />
     </Room>
   );
 };
