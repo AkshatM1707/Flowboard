@@ -7,6 +7,7 @@ import { Id } from "@/convex/_generated/dataModel";
 import { Canvas } from "./_components/canvas";
 import { Room } from "@/app/room";
 import { Loading } from "./_components/loading";
+import { MobileOptimization } from "@/components/mobile-optimization";
 
 interface BoardIdPageProps {
   params: Promise<{
@@ -33,9 +34,12 @@ const BoardIdPage = ({ params }: BoardIdPageProps) => {
   }
 
   return (
-    <Room roomId={boardId} fallback={<Loading />}>
-      <Canvas boardId={boardId} />
-    </Room>
+    <>
+      <MobileOptimization />
+      <Room roomId={boardId} fallback={<Loading />}>
+        <Canvas boardId={boardId} />
+      </Room>
+    </>
   );
 };
 

@@ -53,6 +53,13 @@ export const update = mutation({
       throw new Error("Unauthorized");
     }
 
+    // Get the board first to check permissions
+    const existingBoard = await ctx.db.get(args.id);
+    
+    if (!existingBoard) {
+      throw new Error("Board not found");
+    }
+
     const title = args.title.trim();
 
     if (!title) {
@@ -158,7 +165,16 @@ export const remove = mutation({
     if (!identity) {
       throw new Error("Unauthorized");
     }
+
+    // Check if the board exists first
+    const existingBoard = await ctx.db.get(args.id);
+    if (!existingBoard) {
+      throw new Error("Board not found");
+    }
+
     const userId = identity.subject;
+    
+    // Remove from favorites if it exists
     const existingFavorite = await ctx.db
       .query("userFavorites")
       .withIndex("by_user_board", (q) =>
@@ -170,7 +186,10 @@ export const remove = mutation({
       await ctx.db.delete(existingFavorite._id);
     }
 
+    // Delete the board
     await ctx.db.delete(args.id);
+    
+    return { success: true };
   },
 });
 
