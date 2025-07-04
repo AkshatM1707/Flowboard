@@ -14,7 +14,6 @@ import { useApiMutation } from "@/hooks/use-api-mutation";
 import { api } from "@/convex/_generated/api";
 import { Button } from "./ui/button";
 import { useRenameModal } from "@/store/use-rename-modal";
-import { useRouter } from "next/navigation";
 interface ActionProps {
   children: React.ReactNode;
   side?: DropdownMenuContentProps["side"];
@@ -30,7 +29,6 @@ export const Actions = ({
   id,
   title,
 }: ActionProps) => {
-  const router = useRouter();
   const { onOpen } = useRenameModal();
   const { mutate, pending } = useApiMutation(api.board.remove);
   
@@ -51,7 +49,7 @@ export const Actions = ({
         window.location.href = "/";
       })
       .catch((error) => {
-        console.error("Delete error:", error);
+        // console.error("Delete error:", error);
         if (error.message?.includes("Unauthorized") || error.message?.includes("authentication")) {
           toast.error("Authentication issue. Please try again.", { id: "delete-board" });
         } else {

@@ -5,14 +5,12 @@ import { useApiMutation } from "@/hooks/use-api-mutation";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import { Plus } from "lucide-react";
-import { useRouter } from "next/navigation";
 
 interface NewBoardButtonProps {
   orgId: string;
   disabled?: boolean;
 }
 export const NewBoardButton = ({ orgId, disabled }: NewBoardButtonProps) => {
-  const router = useRouter();
   const { mutate, pending } = useApiMutation(api.board.create);
   const onClick = () => {
     toast.loading("Creating board...", { id: "create-board" });
@@ -22,7 +20,7 @@ export const NewBoardButton = ({ orgId, disabled }: NewBoardButtonProps) => {
       title: "Untitled",
     })
       .then((id) => {
-        console.log("Board created with ID:", id);
+        // console.log("Board created with ID:", id);
         toast.success("Board created successfully", { id: "create-board" });
         
         if (id) {
@@ -32,8 +30,8 @@ export const NewBoardButton = ({ orgId, disabled }: NewBoardButtonProps) => {
           toast.error("Failed to get board ID", { id: "create-board" });
         }
       })
-      .catch((err) => {
-        console.error("Failed to create board", err);
+      .catch(() => {
+        // console.error("Failed to create board", err);
         toast.error("Failed to create board", { id: "create-board" });
       });
   };

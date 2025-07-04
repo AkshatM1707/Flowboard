@@ -19,7 +19,7 @@ export const Navbar = () => {
   useEffect(() => {
     if (organization?.id && previousOrgId && organization.id !== previousOrgId) {
       // Organization changed, refresh the page
-      console.log("Organization changed from", previousOrgId, "to", organization.id);
+      // console.log("Organization changed from", previousOrgId, "to", organization.id);
       // Clear any search parameters when switching organizations
       const currentUrl = new URL(window.location.href);
       currentUrl.search = '';
@@ -32,8 +32,8 @@ export const Navbar = () => {
 
   // Log user information for debugging
   useEffect(() => {
-    console.log("Current User:", user);
-    console.log("Current Organization:", organization);
+    // console.log("Current User:", user);
+    // console.log("Current Organization:", organization);
   }, [user, organization]);
 
   return (

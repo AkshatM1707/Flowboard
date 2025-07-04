@@ -26,7 +26,7 @@ export const EmptySearch = () => {
       <p className="text-sm text-gray-600 text-center max-w-md mb-6">
         {search ? (
           <>
-            No boards found matching <span className="font-medium">"{search}"</span>. 
+            No boards found matching <span className="font-medium">&ldquo;{search}&rdquo;</span>. 
             Try a different search term or check your spelling.
           </>
         ) : (

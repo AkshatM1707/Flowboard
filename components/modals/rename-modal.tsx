@@ -39,7 +39,7 @@ export const RenameModal = () => {
         }, 100);
       })
       .catch((error) => {
-        console.error("Rename error:", error);
+        // console.error("Rename error:", error);
         if (error.message?.includes("Unauthorized")) {
           toast.error("Unable to rename board. Please try again in a moment.");
         } else {

@@ -64,7 +64,7 @@ export const BoardList = ({ orgId }: BoardListProps) => {
   const data = useQuery(api.boards.get, { orgId, search, favorites });
 
   // Debug logging
-  console.log("BoardList - Search:", search, "Favorites:", favorites, "Data:", data);
+  // console.log("BoardList - Search:", search, "Favorites:", favorites, "Data:", data);
 
   // Show loading state when organization is switching
   if (isOrgSwitching || data === undefined) {
@@ -155,7 +155,7 @@ export const BoardList = ({ orgId }: BoardListProps) => {
           {/* Search query display */}
           {search && (
             <p className="text-sm text-gray-600 mb-2">
-              Found {data.length} {data.length === 1 ? 'board' : 'boards'} matching "{search}"
+              Found {data.length} {data.length === 1 ? 'board' : 'boards'} matching &ldquo;{search}&rdquo;
             </p>
           )}
           

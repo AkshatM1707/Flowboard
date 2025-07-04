@@ -32,7 +32,7 @@ export const BoardCard = ({
   orgId,
   isFavorite,
 }: BoardCardProps) => {
-  console.log(id);
+  // console.log(id);
   const { userId } = useAuth();
   const authorLabel = userId === authorId ? "You" : authorName;
   const createdAtLabel = formatDistanceToNow(createdAt, {

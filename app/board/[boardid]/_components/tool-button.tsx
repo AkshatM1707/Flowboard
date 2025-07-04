@@ -21,7 +21,7 @@ export const ToolButton = ({
   isDisabled,
 }: ToolButtonProps) => {
   const handleClick = () => {
-    console.log("ToolButton clicked:", label);
+    // console.log("ToolButton clicked:", label);
     onClick();
   };
   return (

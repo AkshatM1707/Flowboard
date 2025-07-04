@@ -95,7 +95,7 @@ export const SearchInput = () => {
             <div className="py-2 flex items-center gap-2">
               <Search className="h-4 w-4 text-blue-600" />
               <p className="text-sm text-blue-800">
-                Searching for "<span className="font-medium">{value}</span>"
+                Searching for &ldquo;<span className="font-medium">{value}</span>&rdquo;
               </p>
             </div>
             <p className="text-xs text-blue-600">
