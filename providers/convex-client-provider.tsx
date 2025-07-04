@@ -18,12 +18,15 @@ export const ConvexClientProvider = ({
   return (
     <ClerkProvider
       publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
+      dynamic
     >
       <ConvexProviderWithClerk useAuth={useAuth} client={convex}>
-        <Authenticated>{children}</Authenticated>
         <AuthLoading>
           <Loading />
         </AuthLoading>
+        <Authenticated>
+          {children}
+        </Authenticated>
       </ConvexProviderWithClerk>
     </ClerkProvider>
   );

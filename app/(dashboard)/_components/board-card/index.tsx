@@ -32,7 +32,7 @@ export const BoardCard = ({
   orgId,
   isFavorite,
 }: BoardCardProps) => {
-  console.log(id);
+  // console.log(id);
   const { userId } = useAuth();
   const authorLabel = userId === authorId ? "You" : authorName;
   const createdAtLabel = formatDistanceToNow(createdAt, {
@@ -59,13 +59,19 @@ export const BoardCard = ({
   };
   return (
     <Link href={`/board/${id}`}>
-      <div className="group flex aspect-[100/127] flex-col justify-between overflow-hidden rounded-lg border">
+      <div className="group flex aspect-[100/127] flex-col justify-between overflow-hidden rounded-lg border hover:shadow-lg transition-shadow duration-200">
         <div className="relative flex-1 bg-amber-50">
-          <Image src={imageUrl} alt={title} fill className="object-fit" />
+          <Image src={imageUrl} alt={title} fill className="object-cover" />
           <Overlay />
           <Actions id={id} title={title} side="right">
-            <button className="absolute right-1 top-1 px-3 py-2 opacity-0 outline-none transition-opacity group-hover:opacity-100">
-              <MoreHorizontal className="text-white opacity-75 transition-opacity hover:opacity-100" />
+            <button 
+              className="absolute right-1 top-1 px-2 py-1 md:px-3 md:py-2 opacity-0 outline-none transition-opacity group-hover:opacity-100 touch-manipulation"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+              }}
+            >
+              <MoreHorizontal className="h-4 w-4 md:h-5 md:w-5 text-white opacity-75 transition-opacity hover:opacity-100" />
             </button>
           </Actions>
         </div>

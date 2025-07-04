@@ -33,8 +33,19 @@ export const RenameModal = () => {
       .then(() => {
         toast.success("Board Renamed");
         onClose();
+        // Reload the page to ensure UI updates
+        setTimeout(() => {
+          window.location.reload();
+        }, 100);
       })
-      .catch(() => toast.error("Failed to rename board"));
+      .catch((error) => {
+        // console.error("Rename error:", error);
+        if (error.message?.includes("Unauthorized")) {
+          toast.error("Unable to rename board. Please try again in a moment.");
+        } else {
+          toast.error("Failed to rename board");
+        }
+      });
   };
 
   return (
