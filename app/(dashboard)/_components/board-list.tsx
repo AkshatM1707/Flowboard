@@ -19,6 +19,7 @@ export const BoardList = ({ orgId }: BoardListProps) => {
   const searchParams = useSearchParams();
   const { organization } = useOrganization();
   const [isOrgSwitching, setIsOrgSwitching] = useState(false);
+  const [hasConvexError, setHasConvexError] = useState(false);
 
   // Inject keyframes dynamically since no global CSS is used
   useEffect(() => {
@@ -41,14 +42,17 @@ export const BoardList = ({ orgId }: BoardListProps) => {
     };
   }, []);
 
-  // Handle organization switching
+  // Handle organization switching with improved error handling
   useEffect(() => {
     if (organization?.id !== orgId) {
       setIsOrgSwitching(true);
       const timer = setTimeout(() => {
         setIsOrgSwitching(false);
-      }, 1000);
+      }, 2000); // Increased timeout to handle RSC delays
       return () => clearTimeout(timer);
+    } else {
+      // Clear switching state when organization matches
+      setIsOrgSwitching(false);
     }
   }, [organization?.id, orgId]);
 
@@ -63,8 +67,52 @@ export const BoardList = ({ orgId }: BoardListProps) => {
 
   const data = useQuery(api.boards.get, { orgId, search, favorites });
 
+  // Handle Convex connection errors with improved timeout
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (data === undefined && !hasConvexError && !isOrgSwitching) {
+        setHasConvexError(true);
+      }
+    }, 8000); // Increased timeout to handle organization switching
+
+    if (data !== undefined) {
+      setHasConvexError(false);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [data, hasConvexError, isOrgSwitching]);
+
   // Debug logging
   // console.log("BoardList - Search:", search, "Favorites:", favorites, "Data:", data);
+
+  // Show error state when Convex backend is unavailable
+  if (hasConvexError) {
+    return (
+      <div className="relative h-full flex items-center justify-center">
+        <div className="text-center space-y-4">
+          <div className="text-6xl">🔌</div>
+          <h2 className="text-2xl font-semibold">Connection Error</h2>
+          <p className="text-muted-foreground max-w-md">
+            Unable to connect to the backend. Please make sure the Convex development server is running.
+          </p>
+          <div className="space-y-2">
+            <p className="text-sm text-muted-foreground">
+              Run this command in your terminal:
+            </p>
+            <code className="bg-muted p-2 rounded text-sm block">
+              npx convex dev
+            </code>
+          </div>
+          <button 
+            onClick={() => window.location.reload()} 
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            Retry Connection
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   // Show loading state when organization is switching
   if (isOrgSwitching || data === undefined) {
