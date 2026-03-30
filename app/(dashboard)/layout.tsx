@@ -7,6 +7,7 @@ import { ConvexClientProvider } from "@/providers/convex-client-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { ModalProvider } from "@/providers/modal-provider";
 import { useEffect } from "react";
+import ErrorBoundary from "@/components/error-boundary";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -81,7 +82,9 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                 <Navbar />
                 <div className="flex-1 p-3 md:p-6 overflow-hidden">
                   <div className="h-full bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm rounded-xl md:rounded-2xl shadow-xl border border-white/20 dark:border-slate-700/20 overflow-hidden flex flex-col">
-                    {children}
+                    <ErrorBoundary>
+                      {children}
+                    </ErrorBoundary>
                   </div>
                 </div>
               </div>
